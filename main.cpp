@@ -1423,9 +1423,14 @@ void MainWindow::on_pushButton_5_clicked()
     ui->pushButton_40->setVisible(true);
     ui->pushButton_41->setVisible(true);
     ui->pushButton_5->setVisible(false);
-    QImage loadedImage;
+
     QString fileName = QFileDialog::getOpenFileName(this, "Open Image", "", "Image Files (*.jpg *.png *.bmp *.jpeg)");
-    if (fileName.isEmpty() || !loadedImage.load(fileName)) {
+    if(fileName.isEmpty()){
+        return;
+    }
+
+    QImage loadedImage;
+    if (!loadedImage.load(fileName)) {
         QMessageBox::critical(this, "Error", "Failed to load image!");
         return;
     }
